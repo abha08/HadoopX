@@ -20,8 +20,8 @@ cpu_ip=[]
 cpu_check="lscpu | grep -i 'CPU(s):' | head -1 | cut -d: -f2"
 cpu_RAM="cat /proc/meminfo | grep -i 'MemTotal:' | cut -d: -f2"
 for i in ip_list:
-	cpu_core=commands.getoutput("sshpass -p 'redhat' ssh -o StrictHostKeyChecking=no root@"+i+" "+cpu_check)
-	cpu_ram=commands.getoutput("sshpass -p 'redhat' ssh -o StrictHostKeyChecking=no root@"+i+" "+cpu_RAM)
+	cpu_core=commands.getoutput("sshpass -p 'redhat' ssh -q -o StrictHostKeyChecking=no root@"+i+" "+cpu_check)
+	cpu_ram=commands.getoutput("sshpass -p 'redhat' ssh -q -o StrictHostKeyChecking=no root@"+i+" "+cpu_RAM)
 	cpu_ip.append(i+cpu_core+cpu_ram)
 
 print cpu_ip
